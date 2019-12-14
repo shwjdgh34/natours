@@ -11,5 +11,8 @@
     "url": "git+https://github.com/shwjdgh34/natours.git"
   },
   "author": "Jeongho Noh",
-  "license": "ISC"
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.17.1"
+  }
 }
