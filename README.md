@@ -1,5 +1,7 @@
 # Server with Express + MongoDB
 
+this is for learning Express + mongoDB to make server. app.js is main page
+
 # TOC
 
 - [Server with Express + MongoDB](#server-with-express--mongodb)
