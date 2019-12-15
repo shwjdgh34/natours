@@ -15,7 +15,11 @@ this is for learning Express + mongoDB to make server. app.js is main page
 
 ### express.json()
 
-This is a built-in middleware function in Express. It parses incoming requests with JSON payloads and is based on body-parser. This makes me parse req.body
+This is a built-in middleware function in Express. It parses incoming requests with JSON payloads and is based on body-parser. This is make us get access to the request body on the request object
+
+A middleware that appears fist in the code, is excuted before one the appears later. So the orders of the code matters a lot in Express
+
+Express is middleware stack(order as defined in the code) . Everything is middleware even route.
 
 ```javascript
 app.use(express.json());
