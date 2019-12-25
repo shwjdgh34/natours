@@ -7,9 +7,25 @@ const tours = JSON.parse(
   fs.readFileSync(`${__dirname}/dev-data/data/tours-simple.json`)
 );
 
+// my own middleware. The order of middlewares does matter.
+app.use((req, res, next) => {
+  console.log('hi, my own middleware is called 👋');
+  next();
+});
+app.use((req, res, next) => {
+  req.requestTime = new Date().toISOString();
+  next();
+});
+app.use(express.json());
+// app.get('/api/v1/tours', getAllTour);
+// app.get('/api/v1/tours/:id', getTourById);
+// app.post('/api/v1/tours', createTour);
+
 const getAllTour = (req, res) => {
+  console.log(req.requestTime);
   res.status(200).json({
     status: 'success',
+    requestedAt: req.requestTime,
     results: tours.length,
     data: {
       tours
@@ -50,15 +66,6 @@ const createTour = (req, res) => {
     }
   );
 };
-// my own middleware. The order of middlewares does matter.
-app.use((req, res, next) => {
-  console.log('hi, my own middleware is called 👋');
-  next();
-});
-app.use(express.json());
-// app.get('/api/v1/tours', getAllTour);
-// app.get('/api/v1/tours/:id', getTourById);
-// app.post('/api/v1/tours', createTour);
 
 app
   .route('/api/v1/tours')
