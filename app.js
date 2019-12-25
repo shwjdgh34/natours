@@ -1,7 +1,7 @@
 const fs = require('fs');
 const express = require('express');
 const app = express();
-const port = 3000;
+const port = 4000;
 
 const tours = JSON.parse(
   fs.readFileSync(`${__dirname}/dev-data/data/tours-simple.json`)
@@ -50,6 +50,11 @@ const createTour = (req, res) => {
     }
   );
 };
+// my own middleware. The order of middlewares does matter.
+app.use((req, res, next) => {
+  console.log('hi, my own middleware is called 👋');
+  next();
+});
 app.use(express.json());
 // app.get('/api/v1/tours', getAllTour);
 // app.get('/api/v1/tours/:id', getTourById);
